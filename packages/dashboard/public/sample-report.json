@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "repo": "https://github.com/acme-labs/shop-app",
+    "branch": "main",
+    "framework": "Next.js",
+    "startedAt": "2026-08-07T12:03:33.000Z",
+    "finishedAt": "2026-08-07T12:04:20.000Z",
+    "durationMs": 47000
+  },
+  "log": [
+    { "timestamp": "2026-08-07T12:03:33.000Z", "level": "info", "message": "Booting sandbox... done" },
+    { "timestamp": "2026-08-07T12:03:35.000Z", "level": "success", "message": "npm install... done (14.2s)" },
+    { "timestamp": "2026-08-07T12:03:37.000Z", "level": "info", "message": "Starting dev server on :3000" },
+    { "timestamp": "2026-08-07T12:03:40.000Z", "level": "info", "message": "Ghost Agent → navigating /checkout" },
+    { "timestamp": "2026-08-07T12:03:41.000Z", "level": "warn", "message": "Uncaught TypeError: Cannot read properties of undefined (reading 'price')" },
+    { "timestamp": "2026-08-07T12:03:43.000Z", "level": "info", "message": "Ghost Agent → injecting edge payload { email: \"\" }" },
+    { "timestamp": "2026-08-07T12:03:44.000Z", "level": "error", "message": "500 Internal Server Error on /api/cart" },
+    { "timestamp": "2026-08-07T12:03:46.000Z", "level": "info", "message": "Capturing viewport screenshots..." },
+    { "timestamp": "2026-08-07T12:03:50.000Z", "level": "info", "message": "VLM Layout Inspector → analyzing screenshots" },
+    { "timestamp": "2026-08-07T12:04:20.000Z", "level": "success", "message": "Scan complete — 3 issues flagged" }
+  ],
+  "routesTested": ["/", "/checkout", "/cart", "/product/[id]"],
+  "viewports": [
+    { "name": "desktop", "width": 1920, "height": 1080, "route": "/checkout", "screenshotPath": "" },
+    { "name": "tablet", "width": 768, "height": 1024, "route": "/checkout", "screenshotPath": "" },
+    { "name": "mobile", "width": 375, "height": 812, "route": "/checkout", "screenshotPath": "" }
+  ],
+  "errors": [
+    { "type": "network", "message": "500 Internal Server Error", "route": "/checkout", "status": 500, "url": "/api/cart", "timestamp": "2026-08-07T12:03:44.000Z" },
+    { "type": "unhandled", "message": "Cannot read properties of undefined (reading 'price')", "route": "/checkout", "timestamp": "2026-08-07T12:03:41.000Z" }
+  ],
+  "visualIssues": [
+    { "viewport": "mobile", "route": "/checkout", "description": "Overlapping text detected — order summary total collides with the checkout button", "screenshotPath": "", "severity": "medium" }
+  ],
+  "issues": [
+    {
+      "id": "a1b2c3",
+      "severity": "critical",
+      "title": "500 error on POST /api/cart",
+      "description": "Cart endpoint throws when payload contains an empty email field — no validation guard.",
+      "route": "/checkout",
+      "kind": "runtime",
+      "suggestedFix": "Add input validation and a try/catch around the handler for this route — the server is throwing on unexpected input rather than returning a 4xx."
+    },
+    {
+      "id": "d4e5f6",
+      "severity": "high",
+      "title": "Unhandled exception on /checkout",
+      "description": "price is read from an undefined object when a cart item loses its product reference.",
+      "route": "/checkout",
+      "kind": "runtime",
+      "suggestedFix": "Guard the access with optional chaining (?.) or a null check before the property is read — the underlying value isn't guaranteed to exist yet."
+    },
+    {
+      "id": "g7h8i9",
+      "severity": "medium",
+      "title": "Mobile layout issue on /checkout",
+      "description": "Overlapping text detected — order summary total collides with the checkout button on small mobile screens.",
+      "route": "/checkout",
+      "kind": "visual",
+      "suggestedFix": "Increase spacing/margin between the colliding elements at this breakpoint, or switch to a stacked (flex-column) layout below the tablet breakpoint."
+    }
+  ]
+}

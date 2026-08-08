@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.next/
+out/
+.env
+.env.local
+*.log
+.vibecheck/
+.DS_Store
+coverage/
+*.tsbuildinfo
+playwright-report/
+test-results/
