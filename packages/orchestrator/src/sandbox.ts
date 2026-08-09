@@ -163,6 +163,7 @@ function fileToRoute(file: string): string | null {
     .replace(/^app\//, "")
     .replace(/^(src\/)?pages\//, "")
     .replace(/\/page\.(tsx|jsx|ts|js)$/, "")
+    .replace(/^page\.(tsx|jsx|ts|js)$/, "")
     .replace(/\.(tsx|jsx|ts|js|vue)$/, "");
   if (r === "index" || r === "") return "/";
   if (r.includes("[") || r.startsWith("_") || r.startsWith("api/")) return null;
