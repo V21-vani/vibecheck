@@ -4,6 +4,8 @@
 
 Built for HackFusion 2026.
 
+**Live dashboard:** https://dashboard-three-psi-53.vercel.app
+
 ---
 
 ## The problem
