@@ -1,9 +1,11 @@
 export function ViewportCard({
   label,
   flagLabel,
+  screenshotDataUrl,
 }: {
   label: string;
   flagLabel?: string;
+  screenshotDataUrl?: string;
 }) {
   const flagged = Boolean(flagLabel);
   return (
@@ -17,13 +19,18 @@ export function ViewportCard({
         <span className="w-1 h-1 rounded-full bg-ink-muted/40" />
         <span className="w-1 h-1 rounded-full bg-ink-muted/40" />
       </div>
-      <div className="p-2.5 space-y-1.5">
-        <div className="h-1.5 rounded bg-cream2 w-full" />
-        <div className="h-1.5 rounded bg-cream2 w-4/5" />
-        <div className="h-1.5 rounded bg-cream2 w-full" />
-        <div className="h-1.5 rounded bg-cream2 w-4/5" />
-      </div>
-      <div className="px-2.5 pb-2 flex items-center justify-between">
+      {screenshotDataUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={screenshotDataUrl} alt={label} className="w-full max-h-40 object-cover object-top" />
+      ) : (
+        <div className="p-2.5 space-y-1.5">
+          <div className="h-1.5 rounded bg-cream2 w-full" />
+          <div className="h-1.5 rounded bg-cream2 w-4/5" />
+          <div className="h-1.5 rounded bg-cream2 w-full" />
+          <div className="h-1.5 rounded bg-cream2 w-4/5" />
+        </div>
+      )}
+      <div className="px-2.5 pb-2 pt-2 flex items-center justify-between">
         <span className="text-[10px] font-semibold tracking-wide text-ink-muted">{label}</span>
       </div>
       {flagged && (

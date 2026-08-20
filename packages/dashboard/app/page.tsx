@@ -1,11 +1,11 @@
-import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
+import { ScanForm } from "@/components/ScanForm";
 
 const features = [
   {
     icon: "⬡",
-    title: "Zero-Config Sandboxing",
-    desc: "Paste a GitHub URL and VibeCheck spins up an isolated container — no setup, no config files, no waiting.",
+    title: "Zero-Config Scanning",
+    desc: "Paste a live URL and VibeCheck launches a real headless browser against it — no setup, no config files, no waiting.",
   },
   {
     icon: "👻",
@@ -36,25 +36,11 @@ export default function Home() {
         </h1>
 
         <p className="text-lg text-ink-muted mt-6 max-w-2xl mx-auto leading-relaxed">
-          VibeCheck sandboxes your repo, sends a Ghost Agent to hunt down silent bugs, and hands you the fix —
+          VibeCheck sends a Ghost Agent after your live site to hunt down silent bugs, and hands you the fix —
           all before a real user ever sees it.
         </p>
 
-        <div className="flex items-center justify-center gap-4 mt-10">
-          <Link
-            href="/dashboard"
-            className="bg-berry text-white font-semibold px-8 py-3.5 rounded-xl shadow-[0_8px_24px_rgba(204,58,99,0.35)] hover:opacity-90 transition-opacity"
-          >
-            Scan Your Repo →
-          </Link>
-          <button className="border border-ink/20 font-semibold px-8 py-3.5 rounded-xl hover:bg-white transition-colors">
-            Watch Demo
-          </button>
-        </div>
-
-        <p className="text-xs font-medium text-ink-muted mt-6 tracking-wide">
-          Zero setup &nbsp;·&nbsp; Fully sandboxed &nbsp;·&nbsp; No code ever leaves your machine
-        </p>
+        <ScanForm />
       </section>
 
       {/* Product mockup */}

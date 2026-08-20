@@ -22,6 +22,16 @@ export interface ViewportResult {
   height: number;
   route: string;
   screenshotPath: string;
+  /** Present for live scans — a data: URL the dashboard can render directly. */
+  screenshotDataUrl?: string;
+}
+
+export interface VisualIssue {
+  viewport: ViewportResult["name"];
+  route: string;
+  description: string;
+  screenshotPath: string;
+  severity: Severity;
 }
 
 export interface ScanReport {
@@ -36,7 +46,7 @@ export interface ScanReport {
   log: LogLine[];
   errors: unknown[];
   viewports: ViewportResult[];
-  visualIssues: unknown[];
+  visualIssues: VisualIssue[];
   issues: FlaggedIssue[];
   routesTested: string[];
 }
